@@ -48,7 +48,14 @@ def get_start():
     get_start()
 
 def get_end():
-  pass
+  print("Where are you headed?\n Type in the corresponding letter:")
+  end_point_letter = input()
+  if end_point_letter in landmark_choices:
+    end_point = landmark_choices[end_point_letter]
+    return end_point
+  else:
+    print("Sorry, that's not a landmark we have data on. let's try this again...")
+    get_end()
 
 for letter, landmark in landmark_choices.items():
   landmark_string += "{0} - {1}\n".format(letter, landmark)
