@@ -13,7 +13,8 @@ def greet():
 def skyroute():
   greet()
   new_route()
-
+  goodbye()
+  
 def set_start_and_end(start_point, end_point):
   if start_point is not None:
     print('''
@@ -85,6 +86,11 @@ def show_landmarks():
   see_landmarks = input()
   if see_landmarks == 'y':
     print(landmark_string)
+
+def goodbye():
+  print('Thanks for using SkyRoute!')
+
+
 
 for letter, landmark in landmark_choices.items():
   landmark_string += "{0} - {1}\n".format(letter, landmark)
