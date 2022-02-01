@@ -57,6 +57,9 @@ def get_end():
     print("Sorry, that's not a landmark we have data on. let's try this again...")
     get_end()
 
+def new_route(start_point = None, end_point = None):
+  start_point, end_point = set_start_and_end(start_point, end_point)
+
 for letter, landmark in landmark_choices.items():
   landmark_string += "{0} - {1}\n".format(letter, landmark)
 print(landmark_string)
