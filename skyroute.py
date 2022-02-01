@@ -12,6 +12,7 @@ def greet():
 
 def skyroute():
   greet()
+  new_route()
 
 def set_start_and_end(start_point, end_point):
   if start_point is not None:
@@ -70,7 +71,15 @@ def get_route(start_point, end_point):
 
 def new_route(start_point = None, end_point = None):
   start_point, end_point = set_start_and_end(start_point, end_point)
-
+  shortest_route = get_route(start_point, end_point)
+  shortest_route_string = '\n'.join(shortest_route)
+  print("The shortest route from {0} to {1} is:\n{2}".format(start_point, end_point, shortest_route_string))
+  print('Would you like to see another route? Enter y/n: ')
+  show_landmarks()
+  again = input()
+  if again == 'y':
+    new_route(start_point, end_point)
+    
 for letter, landmark in landmark_choices.items():
   landmark_string += "{0} - {1}\n".format(letter, landmark)
 print(landmark_string)
