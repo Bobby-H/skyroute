@@ -66,6 +66,7 @@ def get_route(start_point, end_point):
   routes = []
   for start_station in start_stations:
     for end_station in end_stations:
+      metro_system = get_active_stations() if stations_under_construction else vc_metro
       route = bfs(vc_metro, start_station, end_station)
       routes.append(route)
   shortest_route = min(routes, key=len)
@@ -93,8 +94,6 @@ def show_landmarks():
 
 def goodbye():
   print('Thanks for using SkyRoute!')
-
-
 
 for letter, landmark in landmark_choices.items():
   landmark_string += "{0} - {1}\n".format(letter, landmark)
