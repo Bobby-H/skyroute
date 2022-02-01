@@ -5,6 +5,7 @@ from landmark_choices import landmark_choices
 
 # Build your program below:
 landmark_string = ""
+stations_under_construction = []
 def greet():
   print('''\n Hi there and welcome to SkyRoute! \n 
   We'll help you find the shortest route betwen 
