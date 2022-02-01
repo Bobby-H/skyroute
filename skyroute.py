@@ -5,6 +5,7 @@ from landmark_choices import landmark_choices
 
 # Build your program below:
 landmark_string = ""
+stations_under_construction = []
 def greet():
   print('''\n Hi there and welcome to SkyRoute! \n 
   We'll help you find the shortest route betwen 
@@ -65,16 +66,35 @@ def get_route(start_point, end_point):
   routes = []
   for start_station in start_stations:
     for end_station in end_stations:
-      route = bfs(vc_metro, start_station, end_station)
+      metro_system = get_active_stations() if stations_under_construction else vc_metro
+      if len(stations_under_construction) > 0:
+        possible_route = dfs(metro_system, start_station, end_station)
+      else:
+        if not possible_route:
+          return None
+      route = bfs(metro_system, start_station, end_station)
       routes.append(route)
   shortest_route = min(routes, key=len)
   return shortest_route
 
+def get_active_stations():
+  updated_metro = vc_metro
+  for construction_station in stations_under_construction:
+    for current_station, neighboring_stations in updated_metro:
+      if current_station != station_under_construction:
+        updated_metro[current_station] -= set(stations_under_construction)
+      else:
+        updated_metro[current_station] = set([])
+  return updated_metro
+
 def new_route(start_point = None, end_point = None):
   start_point, end_point = set_start_and_end(start_point, end_point)
   shortest_route = get_route(start_point, end_point)
-  shortest_route_string = '\n'.join(shortest_route)
-  print("The shortest route from {0} to {1} is:\n{2}".format(start_point, end_point, shortest_route_string))
+  if shortest_route is not None:
+    shortest_route_string = '\n'.join(shortest_route)
+    print("The shortest route from {0} to {1} is:\n{2}".format(start_point, end_point, shortest_route_string))
+  else:
+    print(f"Unfortunately, there is currently no path between {start_point} and {end_point} due to maintenance.")
   print('Would you like to see another route? Enter y/n: ')
   show_landmarks()
   again = input()
@@ -90,8 +110,5 @@ def show_landmarks():
 def goodbye():
   print('Thanks for using SkyRoute!')
 
-
-
 for letter, landmark in landmark_choices.items():
   landmark_string += "{0} - {1}\n".format(letter, landmark)
-print(landmark_string)
