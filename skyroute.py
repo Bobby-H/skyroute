@@ -79,7 +79,8 @@ def get_active_stations():
         updated_metro[current_station] -= set(stations_under_construction)
       else:
         updated_metro[current_station] = set([])
-        
+  return updated_metro
+  
 def new_route(start_point = None, end_point = None):
   start_point, end_point = set_start_and_end(start_point, end_point)
   shortest_route = get_route(start_point, end_point)
