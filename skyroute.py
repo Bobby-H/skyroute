@@ -13,8 +13,36 @@ def greet():
 def skyroute():
   greet()
 
+def set_start_and_end(start_point, end_point):
+  if start_point is not None:
+    print('''
+    What would you like to change? \n
+    You can enter 'o' for 'origin',\n
+    'd' for 'destination',\n
+    or 'b' for 'both':
+    ''')
+    change_point = input()
+    if change_point == 'b':
+      start_point = get_start()
+      end_point = get_end()
+    elif change_point == 'o':
+      start_point = get_start()
+    elif change_point == 'd':
+      start_point = get_end()
+    else:
+      print("Oops, that isn't 'o', 'd', or 'b' ... ")
+      set_start_and_end(start_point, end_point)
+  else:
+    start_point = get_start()
+    end_point = get_end()
+    return start_point, end_point
+
+def get_start():
+  pass
+
+def get_end():
+  pass
+
 for letter, landmark in landmark_choices.items():
   landmark_string += "{0} - {1}\n".format(letter, landmark)
 print(landmark_string)
-
-skyroute()
