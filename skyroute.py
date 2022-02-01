@@ -76,7 +76,9 @@ def new_route(start_point = None, end_point = None):
   shortest_route = get_route(start_point, end_point)
   if shortest_route is not None:
     shortest_route_string = '\n'.join(shortest_route)
-  print("The shortest route from {0} to {1} is:\n{2}".format(start_point, end_point, shortest_route_string))
+    print("The shortest route from {0} to {1} is:\n{2}".format(start_point, end_point, shortest_route_string))
+  else:
+    print(f"Unfortunately, there is currently no path between {start_point} and {end_point} due to maintenance.")
   print('Would you like to see another route? Enter y/n: ')
   show_landmarks()
   again = input()
