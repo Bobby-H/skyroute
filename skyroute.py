@@ -12,8 +12,8 @@ def greet():
 
 def skyroute():
   greet()
-  get_route()
-  
+  new_route()
+
 def set_start_and_end(start_point, end_point):
   if start_point is not None:
     print('''
