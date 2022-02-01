@@ -71,6 +71,16 @@ def get_route(start_point, end_point):
   shortest_route = min(routes, key=len)
   return shortest_route
 
+def get_active_stations():
+  updated_metro = vc_metro
+  for construction_station in stations_under_construction:
+    for current_station, neighboring_stations in updated_metro:
+      if current_station != station_under_construction:
+        updated_metro[current_station] -= set(stations_under_construction)
+      else:
+        updated_metro[current_station] = set([])
+  return updated_metro
+
 def new_route(start_point = None, end_point = None):
   start_point, end_point = set_start_and_end(start_point, end_point)
   shortest_route = get_route(start_point, end_point)
@@ -98,4 +108,3 @@ def goodbye():
 
 for letter, landmark in landmark_choices.items():
   landmark_string += "{0} - {1}\n".format(letter, landmark)
-print(landmark_string)
