@@ -71,6 +71,9 @@ def get_route(start_point, end_point):
   shortest_route = min(routes, key=len)
   return shortest_route
 
+def get_active_stations():
+  updated_metro = vc_metro
+
 def new_route(start_point = None, end_point = None):
   start_point, end_point = set_start_and_end(start_point, end_point)
   shortest_route = get_route(start_point, end_point)
