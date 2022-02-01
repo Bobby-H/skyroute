@@ -79,7 +79,13 @@ def new_route(start_point = None, end_point = None):
   again = input()
   if again == 'y':
     new_route(start_point, end_point)
-    
+  
+def show_landmarks():
+  print('Would you like to see the list of landmarks again?\n enter y/n')
+  see_landmarks = input()
+  if see_landmarks == 'y':
+    print(landmark_string)
+
 for letter, landmark in landmark_choices.items():
   landmark_string += "{0} - {1}\n".format(letter, landmark)
 print(landmark_string)
